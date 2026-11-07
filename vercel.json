@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "outputDirectory": "public",
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/map", "destination": "/map/index.html" },
+    { "source": "/app", "destination": "/app/index.html" }
+  ]
+}

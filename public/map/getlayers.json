@@ -1,0 +1,14 @@
+{
+  "styleId": "flora-style",
+  "sceneId": "sphere",
+  "compositions": ["ai-studio-hero", "vexon-showcase", "vesper-showcase"],
+  "intent": "BARRIO night cartography: deep emerald scene, lime denotes interaction, official geography sits below translucent instrument chrome.",
+  "sceneConfig": {
+    "bgColor": "#021b22",
+    "colorLow": "#0a4e52",
+    "colorHigh": "#f3a329",
+    "atmoColor": "#c8e9fe",
+    "flameColor": "#075b45",
+    "flameColor2": "#ef762f"
+  }
+}

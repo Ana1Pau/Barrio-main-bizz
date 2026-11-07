@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="132" viewBox="0 0 520 132" role="img" aria-labelledby="title desc">
+  <title id="title">BARRIO — Comercio que conecta</title>
+  <desc id="desc">Logotipo verde de BARRIO con un pin que representa un local de barrio y un brote naranja.</desc>
+  <g transform="translate(8 8)">
+    <path d="M55 4C29 4 9 24 9 49c0 29 24 48 46 74 22-26 46-45 46-74C101 24 81 4 55 4Z" fill="#064b31"/>
+    <rect x="33" y="42" width="44" height="35" rx="4" fill="#fffaf0"/>
+    <path d="M29 42h52l-5-13H34z" fill="#ef762f"/>
+    <path d="M33 42h9v10h-9zm18 0h9v10h-9zm18 0h9v10h-9z" fill="#fffaf0"/>
+    <path d="M38 58h13v19H38zm19 0h13v10H57z" fill="#0e7146"/>
+    <path d="M55 28c-1-9-8-13-15-12 1 8 7 13 15 12Zm2-1c3-8 10-10 16-7-3 8-9 11-16 7Z" fill="#f3a329"/>
+    <path d="M55 30v-8" stroke="#f3a329" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  <text x="126" y="77" fill="#064b31" font-family="Trebuchet MS,Arial,sans-serif" font-size="64" font-weight="900" letter-spacing="-3">BARRIO</text>
+  <g transform="translate(355 13)" fill="#ef762f">
+    <path d="M12 9c-1-6-6-9-11-8 1 5 5 8 11 8Zm2 0c2-5 7-7 11-5-2 5-6 7-11 5Zm-1-2c1-6 5-9 10-9 0 5-4 9-10 9Z"/>
+  </g>
+  <text x="130" y="103" fill="#315f45" font-family="Trebuchet MS,Arial,sans-serif" font-size="17" font-weight="700" letter-spacing=".4">Comercio que conecta</text>
+</svg>

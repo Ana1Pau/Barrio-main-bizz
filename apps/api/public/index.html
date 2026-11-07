@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#064b31" />
+    <title>BARRIO · comercios de tu barrio</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <header class="topbar"><a class="brand" href="/"><span class="brand-mark">B</span><span>BARRIO<small>Compra cerca. Apoya local.</small></span></a><div id="sessionActions"></div></header>
+    <main>
+      <section id="authView" class="auth-layout">
+        <div class="intro"><span class="eyebrow">EL BARRIO, EN TU MANO</span><h1>Lo que buscas<br /><em>está más cerca.</em></h1><p>Descubre comercios locales y paga con CoDi directamente a cada negocio.</p><div class="direct-note"><span>↗</span><p><b>Tu pago llega al comercio.</b><br />BARRIO conecta la compra con la cuenta bancaria vinculada por cada negocio.</p></div></div>
+        <form id="authForm" class="panel auth-card">
+          <div class="segmented"><button type="button" class="selected" data-auth-mode="login">Iniciar sesión</button><button type="button" data-auth-mode="register">Crear cuenta</button></div>
+          <label id="accountTypeField" class="hidden">Quiero usar BARRIO como<select name="accountType"><option value="buyer">Comprador</option><option value="merchant">Comerciante</option></select></label>
+          <label id="displayNameField" class="hidden">Nombre<input name="displayName" autocomplete="name" maxlength="100" /></label>
+          <label>Correo electrónico<input name="email" type="email" autocomplete="email" maxlength="256" required /></label>
+          <label>Contraseña<input name="password" type="password" autocomplete="current-password" minlength="12" maxlength="128" required /><small>Usa al menos 12 caracteres.</small></label>
+          <button class="button primary full" type="submit" id="authSubmit">Entrar</button>
+          <p id="authMessage" class="message" role="status"></p>
+        </form>
+      </section>
+
+      <section id="buyerView" class="hidden">
+        <div class="page-heading"><div><span class="eyebrow">COMERCIOS LOCALES</span><h1>Compra en tu barrio</h1><p>Elige una tienda y arma tu pedido.</p></div><button id="refreshBuyer" class="button secondary">Actualizar</button></div>
+        <div class="shop-layout"><aside class="panel shop-list"><h2>Tiendas</h2><div id="merchantList" class="stack"></div></aside><section class="panel product-panel"><div id="selectedShop"><p class="empty">Selecciona un comercio para ver sus productos.</p></div></section></div>
+        <section class="panel cart-panel"><div><span class="eyebrow">TU PEDIDO</span><h2 id="cartShopName">Elige una tienda</h2></div><div id="cartItems" class="stack"><p class="muted">Aún no agregas productos.</p></div><div class="cart-bottom"><label>Entrega<select id="deliveryMethod"><option value="RECOGER">Recoger en tienda</option><option value="ENTREGA_LOCAL">Entrega local</option></select></label><label id="deliveryAddressField" class="hidden">Dirección de entrega<input id="deliveryAddress" maxlength="300" /></label><button id="checkoutButton" class="button primary" disabled>Continuar al pago</button></div><div id="checkoutMessage" class="message" role="status"></div></section>
+      </section>
+
+      <section id="merchantView" class="hidden">
+        <div class="page-heading"><div><span class="eyebrow">PANEL DEL COMERCIO</span><h1>Tu negocio en BARRIO</h1><p>Publica productos, vincula tu cuenta y consulta pedidos.</p></div></div>
+        <div class="merchant-layout">
+          <section class="panel"><h2>Perfil del negocio</h2><form id="profileForm" class="stack"><label>Nombre del negocio<input name="name" maxlength="150" required /></label><label>Descripción<textarea name="description" maxlength="500" rows="3"></textarea></label><button class="button primary" type="submit">Guardar perfil</button></form><p id="profileMessage" class="message"></p></section>
+          <section class="panel"><h2>Agregar producto</h2><form id="productForm" class="stack"><label>Nombre<input name="name" maxlength="150" required /></label><label>Descripción<input name="description" maxlength="160" /></label><div class="form-row"><label>Precio (MXN)<input name="priceMXN" type="number" min="0.01" step="0.01" required /></label><label>Existencias<input name="stock" type="number" min="0" step="1" required /></label></div><button class="button primary" type="submit">Publicar producto</button></form><p id="productMessage" class="message"></p></section>
+          <section class="panel bank-panel"><h2>Cuenta para recibir CoDi</h2><p class="muted">La CLABE se envía una sola vez a Pey. BARRIO guarda solo los últimos cuatro dígitos y el identificador de cuenta.</p><form id="bankForm" class="stack"><label>CLABE<input name="clabe" inputmode="numeric" autocomplete="off" minlength="18" maxlength="18" pattern="[0-9]{18}" required /></label><label>Nombre del titular<input name="name" maxlength="150" required /></label><label>Tipo de titular<select name="entity"><option value="business">Empresa</option><option value="person">Persona</option></select></label><label>RFC (opcional)<input name="taxId" maxlength="20" /></label><label>Alias (opcional)<input name="alias" maxlength="100" /></label><button class="button primary" type="submit">Vincular cuenta bancaria</button></form><p id="bankMessage" class="message"></p><button id="checkBankStatus" class="button secondary">Consultar estado CoDi</button></section>
+          <section class="panel orders-panel"><h2>Pedidos recientes</h2><div id="ordersList" class="stack"><p class="muted">Todavía no hay pedidos.</p></div></section>
+        </div>
+      </section>
+
+      <section id="paymentDialog" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="paymentTitle"><div class="panel payment-card"><button id="closePayment" class="close-button" aria-label="Cerrar">×</button><span class="eyebrow">CHECKOUT</span><h2 id="paymentTitle">Tu pedido</h2><div id="paymentResult"></div></div></section>
+    </main>
+    <footer><span>BARRIO</span><span>Un puente entre vecinos y comercios locales.</span><span id="modeBadge"></span></footer>
+  </body>
+</html>
