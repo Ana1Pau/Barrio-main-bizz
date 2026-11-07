@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#064b31" />
+    <meta
+      name="description"
+      content="BARRIO: el comercio de tu ciudad, en el mapa."
+    />
+    <title>BARRIO — El comercio de tu ciudad, en el mapa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="prefetch" href="/map/" as="document" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="shell header">
+      <a href="#inicio" class="brand"
+        ><img
+          src="assets/barrio-logo.svg"
+          alt="BARRIO · El comercio de tu ciudad, en el mapa."
+      /></a>
+      <nav>
+        <a href="#mapa">Explorar</a><a href="#comerciantes">Para comerciantes</a
+        ><a href="#como-funciona">Cómo funciona</a>
+      </nav>
+      <a class="account" href="../prototype/index.html">Entrar ↗</a>
+    </header>
+    <main>
+      <section id="inicio" class="hero shell">
+        <div class="hero-copy">
+          <p class="eyebrow">
+            <i></i> EL COMERCIO LOCAL TIENE MUCHO QUE OFRECER
+          </p>
+          <h1>Tu ciudad<br /><em>tiene de todo.</em></h1>
+          <p><em>Ahora sabes dónde encontrarlo.</em></p>
+          <p>
+            Descubre los tianguis que se ponen hoy, encuentra productos cerca de
+            ti y conoce a los comerciantes que mueven tu barrio.
+          </p>
+          <div class="hero-actions">
+            <a href="#mapa" class="button primary">Explorar el mapa <b>→</b></a
+            ><a href="#comerciantes" class="text-cta"
+              >Soy comerciante <b>↘</b></a
+            >
+          </div>
+          <div class="hero-proof">
+            <span>✿</span>
+            <p>
+              Más visibilidad para quienes venden.<br />Más opciones para
+              quienes compran.
+            </p>
+          </div>
+        </div>
+        <div class="hero-stage">
+          <div class="stage-grid"></div>
+          <span class="stage-label">BARRIO / 01 — MAPA LOCAL</span
+          ><img
+            class="hero-market-art"
+            src="assets/illustrations/tianguis-hero.png"
+            alt="Ilustración de un tianguis lleno de comerciantes y compradores"
+          />
+          <div class="map-chip chip-b">
+            <b>● Abierto hoy</b><span>Mercado local</span>
+          </div>
+          <span class="leaf leaf-a"></span><span class="leaf leaf-b"></span
+          ><span class="pulse p1"></span><span class="pulse p2"></span
+          ><span class="pulse p3"></span>
+        </div>
+      </section>
+      <section class="marquee">
+        <div>
+          <span>MAPA LOCAL</span><i>✿</i><span>COMERCIOS REALES</span><i>✿</i
+          ><span>COMUNIDAD CERCA</span><i>✿</i><span>MAPA LOCAL</span><i>✿</i
+          ><span>COMERCIOS REALES</span>
+        </div>
+      </section>
+      <section id="mapa" class="map-section shell">
+        <div class="map-intro">
+          <p class="eyebrow"><i></i> 01 / DESCUBRE TU CIUDAD</p>
+          <h2>Cada día, un<br />tianguis <em>diferente.</em></h2>
+          <p><em>Cada puesto, algo por descubrir.</em></p>
+          <p>¿Dónde se pone el tianguis hoy? ¿Quién vende lo que buscas?</p>
+          <p>
+            Explora los mercados de la Ciudad de México, consulta sus días de
+            operación y descubre los productos y comerciantes que encuentras en
+            cada uno.
+          </p>
+          <a class="button primary" href="../barrio-2/index.html"
+            >Explorar tianguis <b>↗</b></a
+          ><small
+            >Mapa de tianguis de CDMX basado en datos públicos oficiales.</small
+          >
+        </div>
+        <div class="live-map">
+          <img
+            class="map-illustration"
+            src="assets/illustrations/mapa-tianguis.png"
+            alt="Mapa ilustrado con ubicaciones"
+          />
+        </div>
+      </section>
+      <section id="como-funciona" class="flows">
+        <div class="shell">
+          <div class="flows-head">
+            <div>
+              <p class="eyebrow"><i></i> 02 / ASÍ FUNCIONA BARRIO</p>
+              <h2>
+                Lo que mueve tu barrio,<br /><em
+                  >ahora también está en línea.</em
+                >
+              </h2>
+            </div>
+            <p>
+              Una forma sencilla de descubrir lo local y hacer visible cada
+              negocio.
+            </p>
+          </div>
+        </div>
+        <div class="glide-stage" aria-label="Así funciona BARRIO">
+          <div class="glide-track">
+            <figure>
+              <img
+                src="assets/illustrations/mapa-tianguis.png"
+                alt="Mapa local BARRIO"
+              />
+              <figcaption><b>01</b> Encuentra tu tianguis</figcaption>
+            </figure>
+            <figure>
+              <img
+                src="assets/illustrations/productos.png"
+                alt="Productos frescos de mercado"
+              />
+              <figcaption><b>02</b> Descubre qué venden</figcaption>
+            </figure>
+            <figure>
+              <img
+                src="assets/illustrations/comerciante.png"
+                alt="Perfil de comerciante BARRIO"
+              />
+              <figcaption><b>03</b> Haz visible tu negocio</figcaption>
+            </figure>
+            <figure>
+              <img
+                src="assets/illustrations/actividad-economica.png"
+                alt="Herramientas para comerciantes BARRIO"
+              />
+              <figcaption><b>04</b> Conoce mejor tus ventas</figcaption>
+            </figure>
+            <figure aria-hidden="true">
+              <img src="assets/illustrations/mapa-tianguis.png" alt="" />
+              <figcaption><b>01</b> Encuentra tu tianguis</figcaption>
+            </figure>
+          </div>
+        </div>
+        <div class="shell flow-notes">
+          <article>
+            <b>01 — Encuentra tu tianguis</b
+            ><span
+              >Explora el mapa, elige un día y descubre los mercados que se
+              ponen cerca de ti.</span
+            >
+          </article>
+          <article>
+            <b>02 — Descubre qué venden</b
+            ><span
+              >Encuentra productos, conoce a los comerciantes y consulta sus
+              precios y disponibilidad cuando estén publicados.</span
+            >
+          </article>
+          <article>
+            <b>03 — Haz visible tu negocio</b
+            ><span
+              >Crea tu perfil, muestra tus productos y llega a más personas sin
+              dejar de vender como siempre lo has hecho.</span
+            >
+          </article>
+          <article>
+            <b>04 — Conoce mejor tus ventas</b
+            ><span
+              >Lleva el registro de tu inventario y recibe recomendaciones para
+              aprovechar mejor tus productos y hacer crecer tu negocio.</span
+            >
+          </article>
+        </div>
+      </section>
+      <section class="onboarding shell" id="comerciantes">
+        <div class="onboard-art">
+          <img
+            src="assets/illustrations/comerciante.png"
+            alt="Herramientas para comerciantes en BARRIO"
+          /><span class="circle c1"></span><span class="circle c2"></span>
+        </div>
+        <div class="onboard-copy">
+          <p class="eyebrow"><i></i> 03 / PARA QUIENES HACEN BARRIO</p>
+          <h2>Tu puesto merece<br /><em>estar en el mapa.</em></h2>
+          <p>
+            No necesitas una tienda en línea para empezar a vender en digital.
+          </p>
+          <p>
+            Haz visible tu negocio, comparte lo que vendes y descubre
+            herramientas para administrar mejor tu inventario y encontrar nuevas
+            oportunidades.
+          </p>
+          <div class="account-actions">
+            <a href="../prototype/index.html" class="button primary"
+              >Registrar mi negocio <b>→</b></a
+            >
+          </div>
+          <small
+            >Tu negocio, tus productos, tus clientes. Ahora también en
+            BARRIO.</small
+          >
+        </div>
+      </section>
+      <section class="impact shell">
+        <img
+          class="impact-art"
+          src="assets/illustrations/actividad-economica.png"
+          alt="Ilustración de datos y actividad económica"
+        />
+        <p class="eyebrow"><i></i> 04 / UNA CIUDAD QUE SE CONOCE MEJOR</p>
+        <h2>
+          Lo que antes no se veía,<br /><em>ahora podemos entenderlo.</em>
+        </h2>
+        <p>
+          Cada comercio que se suma ayuda a construir una imagen más completa de
+          la economía local: qué se vende, dónde se vende y cómo cambia la
+          actividad comercial en la ciudad.
+        </p>
+        <p>
+          Información que puede abrir nuevas oportunidades para comerciantes,
+          comunidades e instituciones.
+        </p>
+        <a href="#inicio" class="button secondary">Conocer BARRIO <b>↑</b></a>
+      </section>
+      <section class="closing">
+        <div class="shell">
+          <img
+            class="closing-art"
+            src="assets/illustrations/comunidad.png"
+            alt="Personas construyendo comunidad"
+          />
+          <p class="eyebrow light"><i></i> BARRIO</p>
+          <h2>El barrio ya existe.<br /><em>Hagámoslo visible.</em></h2>
+          <p>
+            Encuentra lo que necesitas. Descubre quién lo vende. Haz crecer lo
+            local.
+          </p>
+          <div class="account-actions">
+            <a href="#mapa" class="button cream">Explorar BARRIO <b>→</b></a
+            ><a href="../prototype/index.html" class="button secondary"
+              >Registrar mi negocio</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="shell footer">
+      <a href="#inicio" class="brand"
+        ><img src="assets/barrio-logo.svg" alt="BARRIO" /></a
+      ><span
+        >La ciudad también se mueve en sus mercados.<br />Hecho para la Ciudad
+        de México.</span
+      ><a href="../barrio-2/index.html">Explorar BARRIO ↗</a>
+    </footer>
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

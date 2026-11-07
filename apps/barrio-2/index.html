@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#075b45" />
+    <title>BARRIO 2.0 — Comercio vivo de CDMX</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://unpkg.com" crossorigin />
+    <link rel="preconnect" href="https://tile.openstreetmap.org" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Onest:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <a class="brand" href="#mapa"
+          ><img src="assets/barrio-logo.svg" alt="BARRIO" /><span>2.0</span></a
+        >
+        <nav id="nav">
+          <button class="active" data-view="mapa">Explorar</button
+          ><button data-view="mercados">Mercados</button
+          ><button data-view="comerciante">Mi negocio</button
+          ><button data-view="ciudad">Inteligencia</button>
+        </nav>
+        <button id="demoBtn" class="outline">Simular registro</button>
+      </header>
+      <main>
+        <section id="mapa" class="view active map-view">
+          <img
+            class="map-art map-art-produce"
+            src="assets/illustrations/productos.png"
+            alt=""
+            aria-hidden="true"
+          />
+          <aside class="discover-panel">
+            <div class="eyebrow"><i></i> RED VIVA · CDMX</div>
+            <h1>Tu barrio,<br /><em>en movimiento.</em></h1>
+            <p class="lede">
+              Descubre tianguis, comerciantes y productos que le dan vida a la
+              ciudad.
+            </p>
+            <label class="search"
+              ><span>⌕</span
+              ><input
+                id="search"
+                placeholder="Busca jitomate, tianguis o colonia"
+                autocomplete="off"
+            /></label>
+            <div class="day-head">
+              <span>¿Cuándo quieres ir?</span><button id="todayBtn">Hoy</button>
+            </div>
+            <div class="days" id="days"></div>
+            <div class="favorites-tool"><span>TIANGUIS FAVORITOS</span><button id="tepitoFavorite"><b>⌖</b> Tianguis de Tepito <em>DOM</em></button></div>
+            <label class="toggle"
+              ><input id="hideInactive" type="checkbox" checked /><span></span> Sólo
+              mercados de este día</label
+            >
+            <div class="source-note">
+              <b>Fuente oficial</b
+              ><span id="officialCount">Cargando ubicaciones…</span
+              ><small>Datos abiertos CDMX · actualización 28 ago 2026</small>
+            </div>
+          </aside>
+          <canvas id="gl-field" aria-hidden="true"></canvas>
+          <div class="map-frame" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><b>CDMX / RED COMERCIAL</b
+            ><span id="liveCounter">1,367 señales activas</span>
+          </div>
+          <div id="map"></div>
+          <div class="map-legend">
+            <span><i class="dot active-dot"></i> Abierto según fuente</span
+            ><span><i class="dot unknown-dot"></i> Horario por confirmar</span>
+          </div>
+          <article id="marketDrawer" class="market-drawer hidden"></article>
+        </section>
+
+        <section id="mercados" class="view marketplace">
+          <div class="section-intro">
+            <div>
+              <div class="eyebrow"><i></i> COMPRA CERCA</div>
+              <h2>Lo bueno<br /><em>está a la vuelta.</em></h2>
+            </div>
+            <p>
+              Comercios que ya participan en BARRIO. Precios y promociones son
+              información proporcionada por cada negocio.
+            </p>
+          </div>
+          <div class="filter-row" id="categoryFilters"></div>
+          <div class="merchant-grid" id="merchantGrid"></div>
+        </section>
+
+        <section id="comerciante" class="view merchant-view">
+          <div class="merchant-top">
+            <div>
+              <div class="eyebrow"><i></i> ESPACIO COMERCIANTE</div>
+              <h2>Buenos días,<br /><em id="merchantHello">María.</em></h2>
+              <p>
+                Tu información se actualiza cuando llegan registros o análisis
+                externos.
+              </p>
+            </div>
+            <div class="profile-card">
+              <span class="avatar">MS</span>
+              <div>
+                <b id="profileName">Verdulería San Martín</b
+                ><small>Tianguis de la Guerrero · perfil 86% completo</small>
+              </div>
+              <button>Editar</button>
+            </div>
+          </div>
+          <div class="dashboard-grid">
+            <section class="inventory-panel">
+              <div class="panel-title">
+                <div>
+                  <span class="kicker">ÚLTIMO CORTE</span>
+                  <h3>Inventario recibido</h3>
+                </div>
+                <span class="sample-tag">DEMO · análisis externo</span>
+              </div>
+              <div class="inventory-compare" id="inventoryCompare"></div>
+              <button id="updateInventory" class="text-cta">
+                Simular nueva foto de inventario →
+              </button>
+            </section>
+            <section class="insights-panel">
+              <div class="panel-title">
+                <div>
+                  <span class="kicker">RECOMENDACIONES</span>
+                  <h3>Para tu siguiente jornada</h3>
+                </div>
+                <span class="spark">✦</span>
+              </div>
+              <div id="insights"></div>
+              <small class="disclaimer"
+                >Sugerencias basadas en datos de demostración; no son
+                proyecciones financieras garantizadas.</small
+              >
+            </section>
+          </div>
+          <section class="onboarding-strip">
+            <div>
+              <span class="whatsapp">◔</span
+              ><b>Registra tu negocio por WhatsApp</b>
+              <p>
+                1. Cuéntanos de tu negocio · 2. Comparte tu tianguis · 3. Envía
+                una foto · 4. Confirma productos.
+              </p>
+            </div>
+            <div class="onboarding-actions">
+              <button class="dark" id="merchantDemoBtn">Simular registro</button
+              ><button class="dark" id="whatsappBtn">Abrir asistente ↗</button>
+            </div>
+          </section>
+        </section>
+
+        <section id="ciudad" class="view city-view">
+          <div class="city-header">
+            <div>
+              <div class="eyebrow light"><i></i> INTELIGENCIA TERRITORIAL</div>
+              <h2>La economía<br /><em>que ya existe.</em></h2>
+            </div>
+            <p>
+              Una lectura respetuosa y agregada del comercio tradicional. Las
+              cifras operativas BARRIO están marcadas como demostración.
+            </p>
+          </div>
+          <div class="kpis" id="kpis"></div>
+          <div class="city-grid">
+            <section class="chart-panel">
+              <div class="panel-title">
+                <div>
+                  <span class="kicker">FUENTE OFICIAL</span>
+                  <h3>Tianguis por día</h3>
+                </div>
+                <span id="selectedDayLabel">Lunes</span>
+              </div>
+              <div id="weekdayChart" class="weekday-chart"></div>
+            </section>
+            <section class="area-panel">
+              <div class="panel-title">
+                <div>
+                  <span class="kicker">BARRIO · DEMO</span>
+                  <h3>Actividad por zona</h3>
+                </div>
+              </div>
+              <div id="areaBars"></div>
+              <small
+                >Indicadores de actividad simulados; no representan resultados
+                de la ciudad.</small
+              >
+            </section>
+          </div>
+        </section>
+      </main>
+      <div id="toast" role="status" aria-live="polite"></div>
+    </div>
+    <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

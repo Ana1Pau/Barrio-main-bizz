@@ -1,0 +1,19 @@
+# Secretos y configuración local — NUNCA se suben al repositorio
+.env
+*.env
+appsettings.json
+appsettings.*.json
+!appsettings.example.json
+**/bin/
+**/obj/
+node_modules/
+*.log
+.DS_Store
+Thumbs.db
+
+# Credenciales/certificados
+*.pfx
+*.p12
+*.pem
+*.key
+.vercel

@@ -1,0 +1,15 @@
+{
+  "name": "barrio-api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": { "start": "node src/server.mjs", "dev": "node --watch src/server.mjs", "test": "node --test" },
+  "dependencies": {
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.1.0",
+    "helmet": "^8.1.0",
+    "mssql": "^12.7.0",
+    "qrcode": "^1.5.4"
+  }
+}
