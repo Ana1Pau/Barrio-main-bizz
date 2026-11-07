@@ -39,5 +39,5 @@ if ! sqlcmd -b -S sqlserver -U sa -P "$MSSQL_SA_PASSWORD" -C -d BarrioDB -Q "IF 
 fi
 
 echo "Configurando el principal SQL de la API (acceso limitado al rol role_app_api)..."
-sqlcmd -b -S sqlserver -U sa -P "$MSSQL_SA_PASSWORD" -C -d BarrioDB -v ApiPassword="$BARRIO_API_DB_PASSWORD" -i /scripts-entry/create_api_user.sql
+sqlcmd -b -S sqlserver -U sa -P "$MSSQL_SA_PASSWORD" -C -d BarrioDB -i /scripts-entry/create_api_user.sql
 echo "BARRIO schema and API principal ready."

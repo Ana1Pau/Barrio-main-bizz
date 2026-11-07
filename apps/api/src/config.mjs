@@ -30,6 +30,7 @@ export function loadConfig(env = process.env) {
       server: required('BARRIO_DB_SERVER', env.BARRIO_DB_SERVER),
       database: required('BARRIO_DB_NAME', env.BARRIO_DB_NAME),
       authMode,
+      trustServerCertificate: env.BARRIO_DB_TRUST_SERVER_CERTIFICATE === 'true',
       clientId: env.AZURE_CLIENT_ID,
       user: env.BARRIO_DB_USER,
       password: env.BARRIO_DB_PASSWORD,

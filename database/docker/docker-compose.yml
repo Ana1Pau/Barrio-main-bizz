@@ -61,6 +61,7 @@ services:
       BARRIO_DB_SERVER: sqlserver
       BARRIO_DB_NAME: BarrioDB
       BARRIO_DB_AUTH_MODE: sql-password
+      BARRIO_DB_TRUST_SERVER_CERTIFICATE: "true"
       BARRIO_ALLOW_SQL_PASSWORD_AUTH: "true"
       BARRIO_DB_USER: barrio_app_api
       BARRIO_DB_PASSWORD: ${BARRIO_API_DB_PASSWORD}

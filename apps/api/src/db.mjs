@@ -6,7 +6,7 @@ async function configFor(config) {
   const base = {
     server: config.server,
     database: config.database,
-    options: { encrypt: true, trustServerCertificate: false, enableArithAbort: true },
+    options: { encrypt: true, trustServerCertificate: config.trustServerCertificate ?? false, enableArithAbort: true },
     pool: { min: 0, max: 10, idleTimeoutMillis: 30000 },
     connectionTimeout: 15000,
     requestTimeout: 30000,
