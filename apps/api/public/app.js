@@ -214,21 +214,34 @@ async function submitProfile(event) {
 
 async function submitProduct(event) {
   event.preventDefault();
-  const form = new FormData(event.currentTarget);
+  const formElement = event.currentTarget;
+  const submitButton = formElement.querySelector('button[type="submit"]');
+  const form = new FormData(formElement);
+  submitButton.disabled = true;
   try {
     await api('/merchant/products', { method: 'POST', body: { name: form.get('name'), description: form.get('description') || null, priceMXN: Number(form.get('priceMXN')), stock: Number(form.get('stock')) } });
-    event.currentTarget.reset();
+    formElement.reset();
     message($('#productMessage'), 'Producto publicado.');
-  } catch (error) { message($('#productMessage'), error.message === 'merchant_profile_required' ? 'Primero crea el perfil del comercio.' : 'No se pudo publicar el producto.', true); }
+  } catch (error) {
+    const notices = {
+      merchant_profile_required: 'Primero crea el perfil del comercio.',
+      unauthorized: 'Tu sesión venció. Inicia sesión de nuevo.',
+      invalid_product: 'Revisa el nombre, el precio y las existencias.',
+    };
+    message($('#productMessage'), notices[error.message] || 'No se pudo confirmar la publicación. Revisa tus productos antes de volver a enviarlo.', true);
+  } finally {
+    submitButton.disabled = false;
+  }
 }
 
 async function submitBankAccount(event) {
   event.preventDefault();
-  const form = new FormData(event.currentTarget);
+  const formElement = event.currentTarget;
+  const form = new FormData(formElement);
   const key = crypto.randomUUID();
   try {
     const result = await api('/merchant/bank-account', { method: 'POST', body: { clabe: form.get('clabe'), name: form.get('name'), entity: form.get('entity'), taxId: form.get('taxId') || null, alias: form.get('alias') || null, idempotencyKey: key } });
-    event.currentTarget.classList.add('hidden');
+    formElement.classList.add('hidden');
     message($('#bankMessage'), `Cuenta vinculada (terminación ${result.clabeLast4}). Estado CoDi: ${result.status}.`);
   } catch (error) { message($('#bankMessage'), error.message === 'pey_onboarding_disabled_in_simulation_mode' ? 'El backend está en modo simulado; la CLABE no se envió.' : 'No se pudo vincular la cuenta. Si hubo un timeout, consulta el estado antes de volver a enviar.', true); }
 }
