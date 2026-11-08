@@ -1,3 +1,5 @@
+import { normalizeClabeInput, isValidClabe } from './formats.mjs';
+
 const API = '/api/v1';
 const state = { token: sessionStorage.getItem('barrioToken'), roles: [], authMode: 'login', merchants: [], selectedMerchant: null, products: [], cart: new Map(), checkoutKey: null, paymentMode: 'unknown' };
 const $ = (selector) => document.querySelector(selector);
@@ -177,7 +179,17 @@ async function loadBankStatus(showMessage = true) {
     if (showMessage) message($('#bankMessage'), `Cuenta ${result.clabeLast4}: ${result.status}`);
     $('#bankForm').classList.add('hidden');
   } catch (error) {
-    if (showMessage && error.message !== 'bank_account_not_registered') message($('#bankMessage'), 'No se pudo consultar el estado de la cuenta.', true);
+    if (error.message === 'pey_onboarding_disabled_in_simulation_mode') {
+      $('#bankForm').classList.add('hidden');
+      $('#checkBankStatus').classList.add('hidden');
+      message($('#bankMessage'), 'La demo está en modo simulado. No ingreses una CLABE real; puedes probar pedidos sin pago.');
+      return;
+    }
+    if (error.message === 'bank_account_not_registered') {
+      $('#bankForm').classList.remove('hidden');
+      return;
+    }
+    if (showMessage) message($('#bankMessage'), 'No se pudo consultar el estado de la cuenta.', true);
   }
 }
 
@@ -229,6 +241,18 @@ $('#deliveryMethod').addEventListener('change', (event) => $('#deliveryAddressFi
 $('#profileForm').addEventListener('submit', submitProfile);
 $('#productForm').addEventListener('submit', submitProduct);
 $('#bankForm').addEventListener('submit', submitBankAccount);
+const clabeField = $('#bankForm [name=clabe]');
+clabeField.addEventListener('input', () => {
+  const original = clabeField.value;
+  const cursor = clabeField.selectionStart ?? original.length;
+  const normalized = normalizeClabeInput(original);
+  if (normalized !== original) {
+    const normalizedCursor = normalizeClabeInput(original.slice(0, cursor)).length;
+    clabeField.value = normalized;
+    clabeField.setSelectionRange(normalizedCursor, normalizedCursor);
+  }
+  clabeField.setCustomValidity(!normalized || isValidClabe(normalized) ? '' : 'La CLABE debe contener exactamente 18 dígitos.');
+});
 $('#checkBankStatus').addEventListener('click', () => loadBankStatus(true));
 $('#closePayment').addEventListener('click', () => $('#paymentDialog').classList.add('hidden'));
 $('#paymentDialog').addEventListener('click', (event) => { if (event.target === $('#paymentDialog')) $('#paymentDialog').classList.add('hidden'); });
